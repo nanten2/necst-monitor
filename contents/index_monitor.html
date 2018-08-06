@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compative" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NECST monitor</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compative" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>NECST monitor</title>
+      <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+      <link rel="stylesheet" href="css/style.css">
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+      <!--
+      <div class="header-container">
+	<a href="#"><h1 class="header-logo">NECST Monitor</h1></a>
+      </div>
+      -->
+    </header>
+    <!--
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="nav-container">
+	<a class="navbar-brand" href="#">NECST monitor</a>
+      </div>
+    </nav>
+    -->
+    <main>
+      <div class="main-container">
+
+	
+	<div class="wrapper1" id="read_status">
+	  <div class="column11-main">
+	    <h1>NECST Monitor</h1>
+	  </div><!--column11-->
+	  <div class="column11-sub1">
+	    <a> Current Controll :</a>&nbsp<a id="user">no data</a>
+	    <p>
+	      <label>Authority1 : </label>
+	      <a id="Authority">no data</a><br>
+	      <label>Authority2 : </label>
+	      <a id="Authority2">no data</a><br>
+	      <div class="column11-sub2">
+		<h4>Que observation switch</h4>
+		<button type="button" class="btn btn-on" id="queue_start">start</button>
+		<button type="button" class="btn btn-on" id="queue_stop">stop</button><br>
+	      </div>
+	      <!--<a id="asobi"></a>-->
+	    </p>
+
+	  </div>	  	    
+	  
+
+	  <div class="column12-title">	    	  
+	    <h3>Weather Status</h3>
+	  </div>	  	    
+	  <div class="column12-main">
+	    <li class="node_box" id="InTemp_box">
+	      <a>InTemp</a><br>
+	      <a id="InTemp">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="OutTemp_box">
+	      <a>OutTemp</a></br>
+	      <a id="OutTemp">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="InHumi_box">
+	      <a>InHumi</a></br>
+	      <a id="InHumi">no data</a>&nbsp[%]
+	    </li>
+	    <li class="node_box" id="OutHumi_box">
+	      <a>OutHumi</a></br>
+	      <a id="OutHumi">no data</a>&nbsp[%]
+	    </li>
+	    <li class="node_box" id="WindDir_box">
+	      <a>WindDir</a></br>
+	      <a id="WindDir">no data</a>
+	    </li>
+	    <li class="node_box" id="WindSp_box">
+	      <a>WindSp</a></br>
+	      <a id="WindSp">no data</a>&nbsp[m/s]
+	    </li>
+	    <li class="node_box" id="Press_box">
+	      <a>Press</a></br>
+	      <a id="Press">no data</a>&nbsp[hPa]
+	    </li>
+	    <li class="node_box" id="Rain_box">
+	      <a>Rain</a></br>
+	      <a id="Rain">no data</a>&nbsp[mm]
+	    </li>
+	    <li class="node_box" id="CabinTemp1_box">
+	      <a>CabinTemp1</a></br>
+	      <a id="CabinTemp1">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="CabinTemp2_box">
+	      <a>CabinTemp2</a></br>
+	      <a id="CabinTemp2">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="DomeTemp1_box">
+	      <a>DomeTemp1</a></br>
+	      <a id="DomeTemp1">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="DomeTemp2_box">
+	      <a>DomeTemp2</a></br>
+	      <a id="DomeTemp2">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="GenTemp1_box">
+	      <a>GenTemp1</a></br>
+	      <a id="GenTemp1">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="GenTemp2_box">
+	      <a>GenTemp2</a></br>
+	      <a id="GenTemp2">no data</a>&nbsp[K]
+	    </li>
+	    <li class="node_box" id="Secofday_box">
+	      <a>Secofday</a></br>
+	      <a id="Secofday">no data</a>&nbsp[s]
+	    </li>
+	    <div class="propaty">
+	      <li style="background-color:#caedc9;"> normal</li>
+	      <li style="background-color:#edecc4;"> warn</li>
+	      <li style="background-color:#e5bcc2;"> error</li>
+	      <li style="background-color:#dcdcdc;"> no data</li>	      
+	    </div>	    	    	    
+	    
+	  </div><!--column12-->
+
+
+	  <div class="column13-title">	  
+	    <h3>Device Status</h3>
+	  </div>	  	    	  
+	  <div class="column13-main">
+	    <li>
+              <div class="node_box" id="m2_controller">
+		<a>m2</a>
+		<a id="CurrentM2"></a>
+              </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="m4_controller">
+		<a>m4</a>
+		<a id="CurrentM4"></a>
+              </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="abs_controller">
+		<a>hot</a>
+		<a id="CurrentHot"></a>
+              </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="encoder_status">
+		<a>AzEl</a>
+              </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="authority_check">
+		<a>Authority</a>
+              </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="drive">
+		<a>Drive</a>
+              </div>
+	    </li>
+	    
+	    <li>
+              <div class="node_box" id="dome">
+		<a>Dome</a>
+	      </div>
+	    </li>
+	    <li>
+              <div class="node_box" id="timer">
+		<a>timer</a>
+	      </div>
+	    </li>
+
+	    <li>
+	      <div class="node_box" id="worldcoordinate_linear">
+		<a>linear</a>
+	      </div>
+	    </li>	
+	    <li>
+	      <div class="node_box" id="NodeStatus">
+		<a>Node</a>
+		<a id="n_status"></a>
+	      </div>
+	    </li>	
+
+    
+	    <div class="propaty2">
+	      <li style="background-color:#caedc9;"> normal</li>
+	      <li style="background-color:#e5bcc2;"> error</li>
+	      <li style="background-color:#dcdcdc;"> no data</li>	      
+	    </div>
+	  </div><!--column13-->
+	</div><!--wrapper1-->
+	
+	
+	<div class="wrapper2" id="read_status2">
+
+	  <div class="column21-title">	    	  
+	    <h3>Link</h3>
+	  </div>	  	    
+	  <div class="column21-main">
+	    <p>
+	      <a href="https://nasco-obs-monitor.firebaseapp.com/top_page">controll page</a>&nbsp
+	      <a href="https://nasco-obs-monitor.firebaseapp.com">monitor page</a>
+	    </p>
+	  </div><!--column21-->
+
+	  <div class="column22-title">	    	  
+	    <h3>Main Monitor</h3>
+	  </div>	  	    
+	  <div class="column22-main">
+	    <div class="column22-main-sub12_wrap">
+	      <div class="column22-main-sub1_wrap">
+		<div class="column22-main-sub1">
+		  <li></li>
+		  <li>Az</li>
+		  <li>El</li>
+		  <br>
+		  <li>Current</li>
+		  <li><a id="Current_Az">no data</a></li>
+		  <li><a id="Current_El">no data</a>&nbsp[deg]</li>
+		  <br>
+		  <li>Command</li>
+		  <li><a id="Command_Az">no data</a></li>
+		  <li><a id="Command_El">no data</a>&nbsp&nbsp[deg]</li>
+		  <br>
+		  <li>Deviation</li>
+		  <li><a id="Deviation_Az">no data</a></li>
+		  <li><a id="Deviation_El">no data</a>&nbsp&nbsp[deg]</li> 
+		</div>
+		<div class="column22-main-sub1-down">
+		  <a>Next Observation : </a><br>
+		  UTC : <a id="next_obs">no data</a><br>
+
+		  Edit queue_list here<br>
+		  <a href="https://console.firebase.google.com/u/1/project/necst-queue-list/database/necst-queue-list/data" target="_blank">firebase queue_list</a>&nbsp
+		  <!--
+		      <button type="button" class="btn btn-on" id="test_url">PNG</button>
+		      <img src="" id="image" />
+		      -->
+		</div>
+	      </div>
+	      <div class="column22-main-sub2">
+		<table class="table table-striped">
+		  <tr><th>parameters</th><th>values</th><th>units</th></tr>
+		  <tr>
+		    <td>Current_Drive</td><td><a id="Drive_ready_El">no data</a></td><td>&nbsp</td>
+		  </tr>
+		  <tr>
+		    <td>Current_Dome</td><td><a id="Current_Dome">no data</a></td><td>[deg]</td>
+		  </tr>
+		  <tr>
+		    <td>Dome_tracking</td><td><a id="Dome_Track"></a></td><td>&nbsp</td>
+		  </tr>
+		  <tr>
+		    <td>Door_Dome</td><td><a id="Door_Dome">no data</a></td><td>&nbsp</td>
+		  </tr>
+		  <tr>
+		    <td>Door_Membrane</td><td><a id="Door_Membrane"></a></td><td>&nbsp</td>
+		  </tr>
+		  <tr>
+		    <td>Current_M2</td><td><a id="Current_M2">no data</a></td><td>[um]</td>
+		  </tr>
+		  <tr>
+		    <td>Current_M4</td><td><a id="Current_M4"></a></td><td>&nbsp</td>		    
+		  </tr>
+		  <tr>
+		    <td>Current_Hot</td><td><a id="Current_Hot">no data</a></td><td></td>
+		  </tr>
+		</table>
+	      </div>
+	    </div>
+	    
+	    <div class="column22-main-sub3" id="obs_box">
+	      <h3>Observation status</h3>
+	      <div class="column22-main-sub3-left" id="obs_box1">
+		<p>
+		  <h4>Parameter</h4>
+		  target : <a id="target">no data</a><br>
+		  map : <a id="num_on">no data</a>*<a id="num_seq">no data</a><br>
+		  grid : <a id="xgrid">no data</a>*<a id="ygrid">no data</a><br>
+		  exposure_hot : <a id="exposure_hot">no data</a><br>
+		  exposure_off : <a id="exposure_off">no data</a><br>
+		  exposure_on : <a id="exposure_on">no data</a><br>
+		  scan_direction : <a id="scan_direction">no data</a><br>
+		  start_time : <a id="start_time">no data</a><br>
+		  end_time : <a id="end_time">no data</a><br>
+		</p>
+	      </div>
+	      <div class="column22-main-sub3-right" id="obs_box2">
+		<div class="column22-main-sub3-right-up">
+		  <h4>Current status</h4>
+		  current_num : <a id="current_num">no data</a><br>
+		  current_position : <a id="current_position">no data</a><br>
+		</div>
+		<div class="column22-main-sub3-right-down">
+		  <canvas id="plot" width="200" height="85"></canvas>
+		</div>
+	      </div>
+	    </div>
+	    
+	    <div class="column22-main-sub3" id="obs_box_one">
+	      <h3>Observation status</h3>
+	      <div class="column22-main-sub3-left" id="obs_box1_one">
+		<p>
+		  <h4>Parameter</h4>
+		  target : <a id="one_target">no data</a><br>
+		  num_on : <a id="one_num_on">no data</a><br>
+		  num_sequence : <a id="one_num_seq">no data</a><br>
+		  exposure_hot : <a id="one_exposure_hot">no data</a><br>
+		  exposure_off : <a id="one_exposure_off">no data</a><br>
+		  exposure_on : <a id="one_exposure_on">no data</a><br>
+		  start_time : <a id="one_start_time">no data</a><br>
+		  end_time : <a id="one_end_time">no data</a><br>
+		</p>
+	      </div>
+	      <div class="column22-main-sub3-right" id="obs_box2_one">
+		<div class="column22-main-sub3-right-up">
+		  <h4>Current status</h4>
+		  current_num : <a id="one_current_num">no data</a><br>
+		  current_position : <a id="one_current_position">no data</a><br>
+		</div>
+		<div class="column22-main-sub3-right-down">
+		  <canvas id="oneplot" width="200" height="85"></canvas>
+		</div>
+	      </div>
+	    </div>
+	    
+	    <div class="column22-main-sub4">
+	      <a>24 hours weather monitor</a>
+	      <canvas id="w_monitor" width="200" height="80"></canvas>
+	    </div>	    
+	  </div><!--column22-->	  
+	</div><!--wrapper2-->
+
+
+	<div class="wrapper3">
+	  <div class="column31-main">
+	    <div class="column31-main-sub1">
+              <button class="column31-main-sub1" type="submit" class="btn btn-move" id="move_stop">Stop</button>	      
+	    </div>
+	    <div class="column31-main-sub2">
+	      <li>UTC : <a id="utc_Y"></a>/<a id="utc_M"></a>/<a id="utc_D"></a>&nbsp<a id="utc_h"></a>:<a id="utc_m"></a>:<a id="utc_s"></a></li>
+	      <li>LST : <a id="lst_h"></a>:<a id="lst_m"></a>:<a id="lst_s"></a></li>
+	    </div>	    	    
+	  </div><!--column31-->
+	  <div class="column32-title">	    	  
+	    <h3>Receiver</h3>
+	  </div>	  	    
+	  <div class="column32-main">
+	    <div class="column32-main-sub1">
+	      <div class="column32-main-sub1-up">		
+		<div class="column32-main-sub1-up-left">		
+		  <h3>Thermometer</h3>
+		</div>	      	      
+		<div class="column32-main-sub1-up-right">
+		  <h4>
+		    vacuum ratio : <a id="vacuum">no data</a><a> []</a>
+		  </h4>
+		</div>
+	      </div>
+	      <div class="column32-main-sub1-down-left">
+		<h3>T-t monitor</h3>
+	      </div>
+	      <div class="column32-main-sub1-down-right">
+		<li>
+		  ~~K
+		</li>
+	      </div>	      	      
+	    </div>
+	    <div class="column32-main-sub2">
+	      <h3>SIS</h3>
+	      <div class="column32-main-sub2-left">
+		<table class="table SIS">
+		  <tr><th></th><th> I </th><th> V </th></tr>
+		  <tr><td>1-RU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>1-RL</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>1-LU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>1-LL</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>2-RU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>2-LU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>3-RU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>3-LU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>4-RU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>4-LU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>5-RU</td><td id="">~~~</td><td>~~~</td></tr>
+		  <tr><td>5-LU</td><td id="">~~~</td><td>~~~</td></tr>
+		</table>
+	      </div>
+	      <div class="column32-main-sub2-right">
+		tsys : <a id="tsys">no data</a>&nbsp tau : <a id="tau">no data</a>
+		<li>
+		  V-t
+		</li>
+		<li>
+		  I-t
+		</li>
+	      </div>
+	    </div>
+	    <div class="column32-main-sub3">
+	      <h3>XFFTS</h3>
+	      <div class="column32-main-sub3_1">
+		<a>SPEC</a>
+		<li>graph</li>
+	      </div>
+	      <div class="column32-main-sub3_2">
+		<a>CONTI</a>
+		<li>graph</li>
+	      </div>
+	      <div class="column32-main-sub3_3">
+		<a>TEMP</a>
+		<li>graph</li>
+	      </div>
+		    
+	    </div>
+	    
+	  </div><!--column32-->
+	  <div class="column33-title">	    	  
+	    <h3>Camera Monitor</h3>
+	  </div>	  	    
+	  <div class="column33-main">
+	    <a>Antenna@under dome</a></br>
+	    <object id="camstream" style="width:300px;height:105px" ></object>
+	    <!--Max : 300px :240px-->
+	  </div><!--column33-->	  	  
+
+	</div><!--wrapper3-->
+
+	
+    </main>
+    <!--
+    <footer>
+      <div class="footer-container">
+	<p class="copyright">@NECST</p>
+      </div>
+    </footer>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eventemitter2@5.0.1/lib/eventemitter2.min.js"></script>
+    <script src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>    
+    <script src="main.js"></script>
+  </body>
+</html>
+
+	
+
