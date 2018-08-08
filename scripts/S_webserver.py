@@ -6,7 +6,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 def kill():
     os.system("kill -KILL " + str(os.getpid()))
 
-os.chdir("/home/amigos/ros/src/necst_monitor/simulator")
+os.chdir("/home/amigos/ros/src/necst_monitor/contents")
 host = 'localhost'
 port = 8000
 httpd = HTTPServer(("", port), SimpleHTTPRequestHandler)

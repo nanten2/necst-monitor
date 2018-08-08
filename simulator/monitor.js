@@ -28,49 +28,49 @@ function sleep(waitsecond, callback){
     
 var ls = new ROSLIB.Topic({
     ros : ros,
-    name : "/web_status",
+    name : "/read_status",
     messageType : "necst/Read_status_msg"
 });
 
 var auth = new ROSLIB.Topic({
     ros : ros,
-    name : "/web_auth",
+    name : "/authority_check",
     messageType : "necst/String_necst"
 });
 
 var dometrack = new ROSLIB.Topic({
     ros : ros,
-    name : "/web_dome_track",
+    name : "/dome_tracking_check",
     messageType : "necst/Bool_necst",
 });
 
 var node = new ROSLIB.Topic({
     ros:ros,
-    name:"/web_node",
+    name:"/check_node",
     messageType:"necst/Status_node_msg"
 });
 
 var alert = new ROSLIB.Topic({
     ros:ros,
-    name:"/web_alert",
+    name:"/alert",
     messageType:"necst/String_necst"
 });
 
 var timer = new ROSLIB.Topic({
     ros:ros,
-    name:"/web_timer",
+    name:"/timer",
     messageType:"necst/Status_timer_msg"
 });
 
 var obs = new ROSLIB.Topic({
     ros:ros,
-    name:"/web_obs",
+    name:"/obs_status",
     messageType:"necst/Status_obs_msg"
 });
 
 var next_obs = new ROSLIB.Topic({
     ros:ros,
-    name:"/web_next_obs",
+    name:"/next_obs",
     messageType:"necst/String_necst"
 });
 
