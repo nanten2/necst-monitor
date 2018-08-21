@@ -1,13 +1,4 @@
-/*initialize*/
-
-/*
-var random = Math.random();
-aa = parseInt(random*5);
-bb = ["Hello my master.", "Fight~~", "Happy Day!!", "Maybe Sleepy??", "Yes, we can."];
-document.getElementById("asobi").innerText = bb[aa]
-*/
-
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.101.184" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
