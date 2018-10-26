@@ -1,12 +1,3 @@
-/*initialize*/
-
-/*
-var random = Math.random();
-aa = parseInt(random*5);
-bb = ["Hello my master.", "Fight~~", "Happy Day!!", "Maybe Sleepy??", "Yes, we can."];
-document.getElementById("asobi").innerText = bb[aa]
-*/
-
 var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
@@ -99,7 +90,7 @@ var ondo = new ROSLIB.Topic({
 ls.subscribe(function(message) {
     for( name in message){
 	if (name=="Current_Az"||name=="Current_El"){
-	    message_e=(parseFloat(message[name])/3600.).toFixed(3)
+	    message_e=parseFloat(message[name]).toFixed(3)
 	}else if (name=="Command_Az"||name=="Command_El"){
 	    message_e=parseFloat(message[name]).toFixed(3)
 	}else if (name=="Current_Dome"){
@@ -423,8 +414,8 @@ for (i=0;i < cl.length;i++){
 
 var queue = new ROSLIB.Topic({
     ros : ros,
-    name : "/web_queue",
-    messageType : "necst/String_necst"
+    name : "/queue_obs",
+    messageType : "necst/Bool_necst"
 });
 
 function writefunction(id){
@@ -434,8 +425,13 @@ function writefunction(id){
     now = dt.getTime()/1000.;
     
     if (key=="queue"){
+	if (value=="start"){
+	    param = true
+	}else if(value=="stop"){
+	    param = false
+	}else{param = ""}
 	console.log(value)
-	msg = new ROSLIB.Message({data:value, from_node:"web", timestamp:now});
+	msg = new ROSLIB.Message({data:param, from_node:"web", timestamp:now});
 	queue.publish(msg)
     }else{};
 };
