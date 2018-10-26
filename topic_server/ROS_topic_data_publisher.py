@@ -9,8 +9,7 @@ from std_msgs.msg import Float64
 from std_msgs.msg import Int64
 from std_msgs.msg import Float32
 from std_msgs.msg import Int32
-from necst.msg import topic_record_msg
-from necst.msg import String_list_msg
+from std_msgs.msg import String
 
 
 rospy.init_node("topic_publisher")
@@ -62,7 +61,7 @@ def _record(req, arg):
     data_dict[arg] = req.data
     return
 
-pub = rospy.Publisher("topic_record",topic_record_msg, queue_size=1)
+pub = rospy.Publisher("topic_record",String, queue_size=1)
 create_list()
 time.sleep(3.)
 while not rospy.is_shutdown():
@@ -73,6 +72,6 @@ while not rospy.is_shutdown():
     for key, value in sorted(data_dict.items()):
         pub_dict[key] = value
     bb = json.dumps(pub_dict)
-    pub.publish(name=bb)
+    pub.publish(data=bb)
     time.sleep(0.5)
 
