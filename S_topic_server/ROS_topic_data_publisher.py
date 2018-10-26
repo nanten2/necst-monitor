@@ -22,7 +22,11 @@ frame_list = []
 def create_list():
     global name_list
     tmp_name = []
-    pub_name = rospy.get_published_topics()
+    try:
+        pub_name = rospy.get_published_topics()
+    except Exception as e:
+        pub_name = []
+        rospy.logerr(e)
     for name, frame in pub_name:
         if name in name_list:
             continue

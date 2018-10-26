@@ -1,0 +1,146 @@
+html*{
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+/*    background:url(../NANTEN2.JPG) center bottom no-repeat;*/
+    /*background-size:contain;*/
+    font-family:sess-self;
+    font-size:12px;
+}
+
+td{
+    border:1px solid #c0c0c0;
+}
+
+button{
+    text-align:center;
+    padding:5px 15px 5px 15px;
+    border-radius:5px;
+}
+
+.btn{
+    background:#fffff0;
+    border: solid 1px #a0a0a0;
+}
+
+.btn-default{
+    background:#fffff0;
+}    
+
+
+.btn-danger{
+    background:#fa8072;   
+}
+
+/* header */
+header{
+    margin:0 auto;
+    background:#f0fff0;
+    width:1000px
+}
+
+.header-container{
+    padding:30px 20px 10px 20px;
+}
+
+.header-logo{
+    color:#000000;
+}
+
+/* footer */
+footer{}
+.footer-container{
+    margin:0 auto;
+    padding:20px;
+    border-radius:0 0 10px 10px;
+    background:#fffff0;
+    width:3500px;
+}
+
+
+/* main */
+main{}
+.main-container{
+    /*display:flex;*/
+    padding: 10px 0 10px 0;
+    background:#ffffff;
+}
+
+.wrapper1{
+    order:1;
+    width: 1000px;
+    margin:0 5px 0 20px;
+    padding:0px 0 10px 0;
+
+}
+
+/*title*/
+.column11-main{
+    text-align:center;
+    margin:0px 5px 5px 5px;
+    /*border:5px solid #061256;*/
+    padding:0px 10px 0px 10px;
+    /*height:px;*/
+    background:#ffffff;
+}
+
+.column11-sub1{
+    text-align:center;
+    margin:5px 5px 0px 5px;
+    border:2px solid #061256;
+}
+
+.column11-sub2{
+    text-align:center;
+    margin:5px 0 0 0;
+    /*border:1px solid #dddddd;*/
+    /*background:#faeeee;*/
+}
+
+/*weather*/
+.column12{
+    text-align:center;
+    border:5px solid #061256;    
+}
+
+.column12-title{
+    text-align:center;
+    background:#b3e0ba;
+    margin:5px 2px 0px 2px;
+    border:2px solid #6eaf73;    
+}
+
+.column12-main{
+    text-align:center;
+    margin:5px 2px 5px 2px;
+    background:#ffffff;
+    border:2px solid #6eaf73;
+    overflow:hidden;
+    list-style:none;    
+}
+
+.column12-main li{
+    float:left;
+    margin:5px 0px 0px 5px;
+    width:120px;
+    border:1px solid #b3e0ba;    
+}
+.column12-main table{
+    float:left;
+    margin:5px 5px 5px 5px;
+    width:980px;
+    /*height:100px;*/
+    border:1px solid #000000;
+    background:#e0ffff;
+}
+
+.data_table{
+    float:left;
+    margin:5px 0px 0px 5px;
+    width:900px;
+    /*height:100px;*/
+    border:1px solid #b3e0ba;
+    background:#dddddd;
+}
+

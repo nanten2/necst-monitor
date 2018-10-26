@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compative" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Topic monitor</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main>
+      <div class="main-container">
+	
+	<div class="wrapper1" id="read_status">
+	  <div class="column11-main">
+	    <h1>Topic Monitor</h1>
+	    <p id="Current_Az"></p>
+	    <p id="Current_El"></p>
+	    <p id="Time"></p>	    
+	  </div><!--column11-->
+	  <div class="column12-main">
+	    <table id="data_table">
+	      <tr>
+		<th>topic name</th>
+		<th> 
+		  <label for="data">data</label>
+                  <input type=" tel" name="data" id="input_data" required>
+                  <button type="submit" class="btn btn-search" id="search">search</button>
+		</th>
+		<th> latest_time</th></tr>
+	    </table>
+
+	  </div><!--column13-->
+	</div><!--wrapper1-->
+	
+    </main>
+    <footer>
+      <div class="footer-container">
+	<p class="copyright">@ K.takashi </p>
+	<p>request --> tkondo@a.phys.nagoya-u.ac.jp</p> 
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eventemitter2@5.0.1/lib/eventemitter2.min.js"></script>
+    <script src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>    
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>    
+  </body>
+</html>
+
+	
+

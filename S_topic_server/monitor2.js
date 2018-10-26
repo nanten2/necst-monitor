@@ -1,4 +1,4 @@
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":11000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
@@ -26,8 +26,8 @@ var topic_data = new ROSLIB.Topic({
 var name_array = []
 topic_data.subscribe(function(message) {
     console.log(message)
-    console.log(message.name)
-    var json = JSON.parse(message.name);
+    console.log(message.data)
+    var json = JSON.parse(message.data);
     console.log(json)
     for(name in json){
 	if (name_array.includes(name)){
@@ -39,7 +39,7 @@ topic_data.subscribe(function(message) {
 	//try{
 	target = document.getElementById(name);
 	try{
-	    json[name] = Number(json[name]).toFixed(3);
+	    json[name] = Number(json[name]).toFixed(4);
 	}catch(e){}
 	target.innerHTML = json[name];
 	var dt = new Date()
@@ -89,8 +89,12 @@ function add_table(data){
     for (j = 0; j < tbl.rows[0].cells.length-1; j++) {
 	var newCell = newRow.insertCell();	
 	newCell.innerHTML = data[j];
-	$(newCell).addClass("test");
+	if(j==0){
+	    $(newCell).addClass("test");	    
+	}
     };
+    //$("table tr").attr("id", data[0]+"_table")
+    console.log(document.getElementById(data[0]+"_table"))
     newCell.innerHTML = '<p id="'+data[0]+'"></p>';
     var newCell = newRow.insertCell();
     newCell.innerHTML = '<p id="'+data[0]+'_time"></p>';
@@ -98,14 +102,27 @@ function add_table(data){
     ob = document.getElementById('data_table').rows[0].cells;
     for(i=0;i<ob.length;i++) ob[i].className='topic';
     //console.log(document.getElementsByClassName("red"));
-
+    $('table tr[class="test"]').hide()    
+    $('table tr').show()
 };
 
 function del_table(num){
     var tbl = document.getElementById("data_table");
     tbl.deleteRow(num+2);
 }
-		
+
+function goFilter(){
+  var wTable = document.getElementById("sampleTable");
+  var wSelect = document.getElementById("sampleSelect");
+  var value  = wSelect.options[wSelect.selectedIndex ].value;
+  if(value == 'all'){
+    wTable.className = '';
+  }else{
+    wTable.className = 'allNoDisplay ' + value;
+  }
+}
+
+
 /*
 try{
     var camera = document.getElementById("camstream");

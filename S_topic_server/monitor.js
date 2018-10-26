@@ -55,13 +55,16 @@ var name_array = []
 topic_name.subscribe(function(sub_array) {
     name_array = sub_array
 });
-
+var check = 0
 topic_value.subscribe(function(value_array) {
-    lll = []
-    for(i=0; i<value_array.data.length; i++){
-	lll.push("test"+i);
-	console.log(lll);	
-    }
+    if (check==0){
+	lll = []
+	for(i=0; i<value_array.data.length; i++){
+	    lll.push("test"+i);
+	    check = 1;
+	}
+    }else{}
+	
     //for (num in name_list.data){
     //console.log(current_array);
     count = 0
@@ -83,24 +86,23 @@ topic_value.subscribe(function(value_array) {
 			//$(this).attr('id',item);
 		    //});
 		//});
-		var ll[num] = new ROSLIB.Topic({
+		console.log(num)
+		var kk = lll[num]
+		var kk = new ROSLIB.Topic({
 		    ros : ros,
 		    name : name_array.data[num],
 		    messageType : value_array.data[num]
 		});
-		try{
-		    xx.subscribe(function(message){
-			console.log(message)
-			//console.log(item, name_array.data[num]);
+		kk.subscribe(function(message){
+		    console.log(item, message)
+		    //console.log(item, name_array.data[num]);
+		    try{
 			target = document.getElementById(item);
 			target.innerHTML = message.data;
-		    });
-		}catch(e){
-		    console.log(e)}
-		//var xx = ""
-		console.log("dddddd")
-	    }
-	})
+		    }catch(e){}
+		});
+	    };
+	});
     size = current_array.length
     current_array = name_array.data
 

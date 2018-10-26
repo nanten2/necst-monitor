@@ -18,7 +18,7 @@ def create_list():
     value_list = []
     pub_name = rospy.get_published_topics()
     for name, value in pub_name:
-        if not "/XFFTS" in name_list and not "/tp_" in name_list:
+        if not "/XFFTS" in name and not "/tp_" in name:
             name_list.append(name)
             value_list.append(value)
     print(name_list)
