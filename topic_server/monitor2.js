@@ -1,4 +1,4 @@
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.183" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
@@ -20,14 +20,14 @@ function sleep(waitsecond, callback){
 var topic_data = new ROSLIB.Topic({
     ros : ros,
     name : "/topic_record",
-    messageType : "necst/topic_record_msg"
+    messageType : "std_msgs/String"
 });
 
 var name_array = []
 topic_data.subscribe(function(message) {
     console.log(message)
-    console.log(message.name)
-    var json = JSON.parse(message.name);
+    console.log(message.data)
+    var json = JSON.parse(message.data);
     console.log(json)
     for(name in json){
 	if (name_array.includes(name)){
