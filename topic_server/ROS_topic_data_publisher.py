@@ -4,6 +4,7 @@ import rospy
 import rosnode
 import time
 import json
+from std_msgs.msg import Bool
 from std_msgs.msg import Float64
 from std_msgs.msg import Int64
 from std_msgs.msg import Float32
@@ -28,7 +29,7 @@ def create_list():
     for name, frame in pub_name:
         if name in name_list:
             continue
-        name = name.split("/")[1]        
+        #name = name.split("/")[1]
         if not "XFFTS" in name and not "tp_" in name:
             #try
             if frame == "std_msgs/Float64":
@@ -42,6 +43,14 @@ def create_list():
             elif frame == "std_msgs/Float32":
                 data_dict[name] = None
                 rospy.Subscriber(name, Float32, _record, callback_args = name)
+                print("regist")                
+            elif frame == "std_msgs/String":
+                data_dict[name] = None
+                rospy.Subscriber(name, String, _record, callback_args = name)
+                print("regist")                
+            elif frame == "std_msgs/Bool":
+                data_dict[name] = None
+                rospy.Subscriber(name, Bool, _record, callback_args = name)
                 print("regist")                
             elif frame == "std_msgs/Int32":
                 data_dict[name] = None

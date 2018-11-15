@@ -1,4 +1,4 @@
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.183" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.101.135" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
@@ -39,7 +39,7 @@ topic_data.subscribe(function(message) {
 	//try{
 	target = document.getElementById(name);
 	try{
-	    json[name] = Number(json[name]).toFixed(4);
+	    /*json[name] = Number(json[name]).toFixed(4);*/
 	}catch(e){}
 	target.innerHTML = json[name];
 	var dt = new Date()
