@@ -4,7 +4,6 @@ import rospy
 import rosnode
 import time
 import json
-from necst.msg import String_list_msg
 from std_msgs.msg import Float64
 from std_msgs.msg import Int64
 from std_msgs.msg import Float32

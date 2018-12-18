@@ -1,7 +1,0 @@
-<launch>
-  <node pkg="necst_monitor" name="webserver" type="S_topic_webserver.py" args="10000" />
-  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
-     <arg name="port" value="11000"/>
-  </include>
-</launch>
-
