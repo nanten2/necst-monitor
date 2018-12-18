@@ -39,12 +39,12 @@ var dometrack = new ROSLIB.Topic({
 var node = new ROSLIB.Topic({
     ros:ros,
     name:"/check_node",
-    messageType:"necst/Status_node_msg"
+    messageType:"necst/String_necst"
 });
 
 var alert = new ROSLIB.Topic({
     ros:ros,
-    name:"/alert",
+    name:"/check_alert",
     messageType:"necst/String_necst"
 });
 
@@ -136,20 +136,42 @@ ls.subscribe(function(message) {
 });
 
 node.subscribe(function(message){
-    msg = message["from_node"].toString();
-    data = message["active"]
+    var json = JSON.parse(message.data)
     //console.log("msg, data : ", msg,data)
-    if (data==true){
-	document.getElementById(msg);
-	$("#"+msg).attr("class", "node_box_blue")
-    }else if(data==false){
-	$("#"+msg).attr("class", "node_box_red")
-    }else{
-	console.log("error")
+    for (name in json){
+	if (json[name]==true){
+	    document.getElementById(name);
+	    $("#"+name).attr("class", "node_box_blue")
+	}else if(json[name]==false){
+	    $("#"+name).attr("class", "node_box_red")
+	}else{
+	    console.log("error")
+	}
     }
 });
 
-
+alert.subscribe(function(message){
+    var json = JSON.parse(message.data)
+    for (check in json){
+	console.log(json)
+	if (check=="true"){
+	    console.log(check)
+	    for (num in json[check]){
+		name = json[check][num].split("/")[1]
+		document.getElementById(name);
+		$("#"+name).attr("class", "node_box_blue")
+	    }
+	}else if(check=="false"){
+	    for (num in json[check]){
+		name = json[check][num].split("/")[1]
+		$("#"+name).attr("class", "node_box_red")
+	    }
+	}else{
+	    console.log("error")
+	}
+    }
+});
+	
 /*
 ondo.subscribe(function(key){
     console.log(key)

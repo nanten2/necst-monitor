@@ -8,7 +8,7 @@ def kill():
 
 os.chdir("/home/amigos/ros/src/necst_monitor/topic_server")
 host = 'localhost'
-port = 8000
+port = 10000
 httpd = HTTPServer(("", port), SimpleHTTPRequestHandler)
 print("serving at port", port)
 httpd.serve_forever()
