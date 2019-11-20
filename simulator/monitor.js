@@ -1,5 +1,4 @@
-
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.183" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.101.15" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
@@ -91,7 +90,7 @@ var ondo = new ROSLIB.Topic({
 ls.subscribe(function(message) {
     for( name in message){
 	if (name=="Current_Az"||name=="Current_El"){
-	    message_e=parseFloat(message[name]).toFixed(3)
+	    message_e=(parseFloat(message[name])).toFixed(3)
 	}else if (name=="Command_Az"||name=="Command_El"){
 	    message_e=parseFloat(message[name]).toFixed(3)
 	}else if (name=="Current_Dome"){
@@ -114,6 +113,10 @@ ls.subscribe(function(message) {
 	    message_e = lst_h.toString()+":"+lst_m.toString()+":"+lst_s.toString();
 	}else{}
 	if(name=="OutTemp"||name=="OutHumi"){
+	    $("#"+name+"_box").attr("class", "node_box_blue");
+	    try{
+	        document.getElementById(name).innerHTML = message_e;
+	    }catch(err){}	    
 	}else{
 	    $("#"+name+"_box").attr("class", "node_box_blue");
 	    try{
@@ -121,8 +124,8 @@ ls.subscribe(function(message) {
 	    }catch(err){}
 	}
 	if(name == "WindSp"){
-	    if (message_e > 20){
-		$("#WindSp_box").attr("class", "node_box_red")}else if(message_e > 15){
+	    if (message_e > 15){
+		$("#WindSp_box").attr("class", "node_box_red")}else if(message_e > 10){
 		    $("#WindSp_box").attr("class", "node_box_yellow")}else{
 			$("#WindSp_box").attr("class", "node_box_blue")
 		    }
@@ -468,3 +471,5 @@ try{
 }
 */
 
+var camera = document.getElementById("camstream");
+camera.innerHTML = '<img style="-webkit-user-select: none;" src="http://172.20.0.204:8080/?action=stream" width="292" height="100">';
