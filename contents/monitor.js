@@ -7,7 +7,7 @@ bb = ["Hello my master.", "Fight~~", "Happy Day!!", "Maybe Sleepy??", "Yes, we c
 document.getElementById("asobi").innerText = bb[aa]
 */
 
-var ros = new ROSLIB.Ros({url : "ws://" + "192.168.100.236" + ":9000"});
+var ros = new ROSLIB.Ros({url : "ws://" + "192.168.101.15" + ":9000"});
 
 ros.on("connection", function() {console.log("websocket: connected"); });
 ros.on("error", function(error) {console.log("websocket error; ", error); });
@@ -122,6 +122,10 @@ ls.subscribe(function(message) {
 	    message_e = lst_h.toString()+":"+lst_m.toString()+":"+lst_s.toString();
 	}else{}
 	if(name=="OutTemp"||name=="OutHumi"){
+	    $("#"+name+"_box").attr("class", "node_box_blue");
+	    try{
+	        document.getElementById(name).innerHTML = message_e;
+	    }catch(err){}	    
 	}else{
 	    $("#"+name+"_box").attr("class", "node_box_blue");
 	    try{
